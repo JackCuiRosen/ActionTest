@@ -14,7 +14,7 @@ jobs:
     - name: 登入DockerHub
       uses: docker/login-action@v3
       with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        username: cui378661
         password: ${{ secrets.DOCKER_HUB_TOKEN }}
     - name: 构建并推送镜像到DockerHub
       uses: docker/build-push-action@v5
