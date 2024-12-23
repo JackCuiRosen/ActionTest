@@ -10,17 +10,14 @@ jobs:
     steps:
     - name: 读取仓库内容
       uses: actions/checkout@v4
-    - name: 显示路径
-      run: pwd
-    - name: 显示版本
-      run: npm --version
-    - name: 安装依赖和打包项目
-      run: |
-        npm install
-        npm run build
-    - name: 部署🚀
-      uses: JamesIves/github-pages-deploy-action@v4
+
+    - name: 登入DockerHub
+      uses: docker/login-action@v3
       with:
-        branch: gh-pages
-        folder: dist
-    
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+    - name: 构建并推送镜像到DockerHub
+      uses: docker/build-push-action@v5
+      with: 
+        push: true
+        tags: actiontest/vue-app:latest
