@@ -1,6 +1,9 @@
 name: 打包Vue
 on: push
 
+permissions:
+  contents: write
+
 jobs:
   npm-build:
     runs-on: ubuntu-latest
@@ -11,7 +14,13 @@ jobs:
       run: pwd
     - name: 显示版本
       run: npm --version
-    - name: 安装依赖
-      run: npm install
-    - name: 打包项目
-      run: npm run build
+    - name: 安装依赖和打包项目
+      run: |
+        npm install
+        npm run build
+    - name: 部署🚀
+      uses: JamesIves/github-pages-deploy-actions@v4
+      with:
+        branch: gh-pages
+        floder: build
+    
