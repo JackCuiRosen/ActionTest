@@ -17,4 +17,4 @@ jobs:
       uses: docker/build-push-action@v5
       with: 
         push: true
-        tags: actiontest/vue-app:latest
+        tags: cui378661/vue-app:latest
